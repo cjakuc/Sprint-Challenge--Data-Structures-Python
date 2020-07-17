@@ -82,15 +82,44 @@ my_dict = {name:0 for name in names_1}
 # If a name in name_2 is a key in my_dict, append it to duplicates
 for name_2 in names_2:
     if name_2 in list(my_dict.keys()):
-        duplicates.append(name_1)
+        duplicates.append(name_2)
 
 
 end_time = time.time()
 print("----------")
-print("List/Dict Solution")
+print("Dict Solution")
 print (f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
 print (f"runtime: {end_time - start_time} seconds")
 print("----------")
+
+start_time = time.time()
+
+f = open('names_1.txt', 'r')
+names_1 = f.read().split("\n")  # List containing 10000 names
+f.close()
+
+f = open('names_2.txt', 'r')
+names_2 = f.read().split("\n")  # List containing 10000 names
+f.close()
+
+duplicates = []  # Return the list of duplicates in this data structure
+
+# Use a dictionary to store all the names in name_1 as keys
+my_set = set(names_1)
+
+# If a name in name_2 is a key in my_dict, append it to duplicates
+for name_2 in set(names_2):
+    if name_2 in my_set:
+        duplicates.append(name_2)
+
+
+end_time = time.time()
+print("----------")
+print("Set Solution1")
+print (f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
+print (f"runtime: {end_time - start_time} seconds")
+print("----------")
+
 
 start_time = time.time()
 
@@ -111,7 +140,7 @@ for name in intersections:
 
 end_time = time.time()
 print("----------")
-print("List/Set Solution")
+print("Set Solution2")
 print (f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
 print (f"runtime: {end_time - start_time} seconds")
 print("----------")
